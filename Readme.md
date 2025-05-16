@@ -1,103 +1,108 @@
-# 🚀 Codeforces Chatbot with CodeBERT for Competitive Programming
+% 🚀 Codeforces Assistant with CodeBERT for Competitive Programming
 
-## 🌟 Overview
-Codeforces Chatbot is an intelligent AI assistant designed to help competitive programmers with Codeforces problems. Powered by **CodeBERT** and **Retrieval-Augmented Generation (RAG)**, this chatbot retrieves problem statements, editorials, and metadata to provide insightful responses.
+\section*{\faRocket \quad Codeforces Assistant with CodeBERT for Competitive Programming}
 
-### 🔥 Key Features
-- **Advanced Retrieval**: Uses a vector database to efficiently fetch relevant problems and solutions.
-- **CodeBERT Embeddings**: Generates high-quality embeddings for problem texts and editorials.
-- **Smart Query Analysis**: Detects problem difficulty, topics, and type of query (e.g., explanation vs. solution request).
-- **Seamless Chatbot Interface**: Enables real-time interaction for competitive programming assistance.
-- **Highly Optimized Vector Search**: Uses FAISS-based **HNSW** and **IVF** indexing for fast retrieval.
+\subsection*{\faStar \quad Overview}
+A smart AI-powered assistant built to support competitive programmers on \textbf{Codeforces}. Leveraging \textbf{CodeBERT} and \textbf{Retrieval-Augmented Generation (RAG)}, the system fetches problem statements, editorials, and metadata to deliver helpful and context-aware responses.
 
+\subsection*{\faFire \quad Key Features}
+\begin{itemize}
+    \item \textbf{Advanced Retrieval:} Employs a vector database to efficiently fetch relevant problems and solutions.
+    \item \textbf{CodeBERT Embeddings:} Generates high-quality embeddings for problem texts and editorials.
+    \item \textbf{Smart Query Analysis:} Recognizes difficulty level, topics, and query intent (e.g., explanation vs. solution request).
+    \item \textbf{Interactive Interface:} Enables real-time interaction for problem-solving support.
+    \item \textbf{Optimized Vector Search:} Uses FAISS-based \textbf{HNSW} and \textbf{IVF} indexing for fast and accurate retrieval.
+\end{itemize}
 
-## 🛠 Installation & Setup
-### Prerequisites
-- Python 3.8+
-- PyTorch (for CodeBERT)
-- FAISS (for vector storage)
-- Required Python packages
+\subsection*{\faWrench \quad Installation \\ \faDownload \quad Setup}
+\textbf{Prerequisites:}
+\begin{itemize}
+    \item Python 3.8+
+    \item PyTorch (for CodeBERT)
+    \item FAISS (for vector database)
+    \item Required Python packages
+\end{itemize}
 
-### 🔧 Installation
-Clone the repository and install dependencies:
-```bash
-git clone https://github.com/yourrepo/codeforces-chatbot.git
-cd codeforces-chatbot
+\textbf{Install:}
+\begin{verbatim}
+git clone https://github.com/yourrepo/codeforces-assistant.git
+cd codeforces-assistant
 pip install -r requirements.txt
-```
+\end{verbatim}
 
-## 🚀 Usage
-### **1️⃣ Running the Chatbot**
-Run `main.py` to start the chatbot interface:
-```bash
+\subsection*{\faPlay \quad Usage}
+\textbf{1️⃣ Run Assistant:}
+\begin{verbatim}
 python main.py
-```
+\end{verbatim}
 
-### **2️⃣ Testing CodeBERT Embeddings**
-```python
+\textbf{2️⃣ Test Embedding Generation:}
+\begin{verbatim}
 from src.embeddings import CodeBERTEmbedder
 
-# Test single embedding
 embedder = CodeBERTEmbedder()
 test_text = "Find the maximum subarray sum"
 embedding = embedder.generate_embedding(test_text)
 print(f"Embedding shape: {embedding.shape}")
-```
+\end{verbatim}
 
-### **3️⃣ Example Chatbot Interaction**
-```python
+\textbf{3️⃣ Example Assistant Interaction:}
+\begin{verbatim}
 from src.embeddings import CodeBERTEmbedder
 from src.vectorstore import VectorStore
 from src.retriever import RAGRetriever
-from src.chatbot import CPChatbot
+from src.chat_interface import CPAssistant
 
-# Initialize components
 embedder = CodeBERTEmbedder()
 vector_store = VectorStore()
 retriever = RAGRetriever(embedder, vector_store)
 
-# Create chatbot
 system_message = '''I am solving a competitive programming problem and need help understanding its editorial.
 Answer my questions regarding the editorial. Let me know if I'm misunderstanding anything.
 Do not write or debug code.'''
-chatbot = CPChatbot(retriever, system_message)
+assistant = CPAssistant(retriever, system_message)
 
-# Chat
-response = chatbot.chat("How do I solve problem C from Contest #792?")
+response = assistant.chat("How do I solve problem C from Contest #792?")
 print(response)
-```
+\end{verbatim}
 
-## 📌 How It Works
-### **1️⃣ Embedding Generation**
-- Uses **CodeBERT** to convert problem texts and editorials into embeddings.
+\subsection*{\faCogs \quad How It Works}
+\textbf{1️⃣ Embedding Generation:}
+\begin{itemize}
+    \item CodeBERT transforms problem statements and editorials into semantic embeddings.
+\end{itemize}
 
-### **2️⃣ Efficient Retrieval with FAISS**
-- Stores embeddings in a **vector database** (FAISS) for fast search.
-- Uses **HNSW** and **IVF** indexing to optimize similarity search.
+\textbf{2️⃣ Vector Search with FAISS:}
+\begin{itemize}
+    \item Embeddings are stored in a FAISS vector index with \textbf{HNSW} and \textbf{IVF} for efficient similarity search.
+\end{itemize}
 
-### **3️⃣ Query Processing & Filtering**
-- Detects **query type** (solution request, explanation request, etc.).
-- Filters results based on **difficulty level** and **problem topics**.
-- Returns the most relevant context with **confidence scores**.
+\textbf{3️⃣ Query Classification and Filtering:}
+\begin{itemize}
+    \item Automatically detects query type, topic, and filters based on problem metadata (difficulty, tags).
+\end{itemize}
 
-### **4️⃣ Chatbot Interaction**
-- Processes user queries and provides **context-aware** responses.
-- Helps users understand **problem-solving strategies** and **editorial insights**.
+\textbf{4️⃣ Response Generation:}
+\begin{itemize}
+    \item Context-aware output generated using RAG, guided by retrieved knowledge and user queries.
+\end{itemize}
 
-## 🚀 Future Enhancements
-- 🔹 **GPT-powered response refinement**
-- 🔹 **Fine-tuned models for competitive programming**
-- 🔹 **Web-based UI for chatbot interaction**
-- 🔹 **Integration with Codeforces API for real-time updates**
+\subsection*{\faLightbulbO \quad Future Enhancements}
+\begin{itemize}
+    \item \textbf{GPT-powered response refinement}
+    \item \textbf{Fine-tuned models for CP domain}
+    \item \textbf{Web UI for real-time interactions}
+    \item \textbf{Integration with Codeforces API}
+\end{itemize}
 
-## 📜 License
-This project is licensed under the MIT License.
+\subsection*{\faBalanceScale \quad License}
+Licensed under the \textbf{MIT License}.
 
-## 💡 Acknowledgments
-- **CodeBERT** for embedding generation
-- **FAISS** for efficient vector search
-- **Competitive programming community** for inspiration
+\subsection*{\faThumbsOUp \quad Acknowledgments}
+\begin{itemize}
+    \item CodeBERT by Microsoft Research
+    \item FAISS by Facebook AI
+    \item Competitive Programming community
+\end{itemize}
 
----
-_🔥 Elevate your competitive programming skills with AI! 🚀_
 
