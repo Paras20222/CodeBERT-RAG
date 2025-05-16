@@ -1,108 +1,80 @@
-% 🚀 Codeforces Assistant with CodeBERT for Competitive Programming
 
-\section*{\faRocket \quad Codeforces Assistant with CodeBERT for Competitive Programming}
+# 🚀 Codeforces Assistant with CodeBERT for Competitive Programming
 
-\subsection*{\faStar \quad Overview}
-A smart AI-powered assistant built to support competitive programmers on \textbf{Codeforces}. Leveraging \textbf{CodeBERT} and \textbf{Retrieval-Augmented Generation (RAG)}, the system fetches problem statements, editorials, and metadata to deliver helpful and context-aware responses.
+## 🌟 Overview
+Codeforces Assistant is an intelligent AI-powered tool designed to aid competitive programmers with Codeforces problems. Utilizing **CodeBERT** and **Retrieval-Augmented Generation (RAG)**, the system fetches relevant problem statements, editorials, and metadata to provide insightful responses.
 
-\subsection*{\faFire \quad Key Features}
-\begin{itemize}
-    \item \textbf{Advanced Retrieval:} Employs a vector database to efficiently fetch relevant problems and solutions.
-    \item \textbf{CodeBERT Embeddings:} Generates high-quality embeddings for problem texts and editorials.
-    \item \textbf{Smart Query Analysis:} Recognizes difficulty level, topics, and query intent (e.g., explanation vs. solution request).
-    \item \textbf{Interactive Interface:} Enables real-time interaction for problem-solving support.
-    \item \textbf{Optimized Vector Search:} Uses FAISS-based \textbf{HNSW} and \textbf{IVF} indexing for fast and accurate retrieval.
-\end{itemize}
+### 🔥 Key Features
+- **Advanced Retrieval System**: Leverages FAISS for efficient similarity search using problem embeddings.
+- **CodeBERT-Powered Embeddings**: Transforms Codeforces problems and editorials into rich vector representations.
+- **Intelligent Query Understanding**: Detects problem tags, difficulty levels, and query intent (e.g., explanation, clarification).
+- **Seamless User Interaction**: Offers a command-line interface for real-time, context-aware assistance.
+- **Optimized Vector Search**: Combines HNSW and IVF indexing in FAISS for speed and accuracy.
 
-\subsection*{\faWrench \quad Installation \\ \faDownload \quad Setup}
-\textbf{Prerequisites:}
-\begin{itemize}
-    \item Python 3.8+
-    \item PyTorch (for CodeBERT)
-    \item FAISS (for vector database)
-    \item Required Python packages
-\end{itemize}
+## 🛠 Installation & Setup
 
-\textbf{Install:}
-\begin{verbatim}
-git clone https://github.com/yourrepo/codeforces-assistant.git
-cd codeforces-assistant
+### Prerequisites
+- Python 3.8+
+- PyTorch
+- FAISS
+- Required Python packages
+
+### 🔧 Installation
+Clone the repository and install dependencies:
+```bash
+git clone https://github.com/Paras20222/ChatBot_For_CP.git
+cd ChatBot_For_CP
 pip install -r requirements.txt
-\end{verbatim}
+```
 
-\subsection*{\faPlay \quad Usage}
-\textbf{1️⃣ Run Assistant:}
-\begin{verbatim}
+## 🚀 Usage
+
+### 1️⃣ Start the Assistant
+```bash
 python main.py
-\end{verbatim}
+```
 
-\textbf{2️⃣ Test Embedding Generation:}
-\begin{verbatim}
+### 2️⃣ Test CodeBERT Embeddings
+```python
 from src.embeddings import CodeBERTEmbedder
 
 embedder = CodeBERTEmbedder()
-test_text = "Find the maximum subarray sum"
-embedding = embedder.generate_embedding(test_text)
+text = "Find the maximum subarray sum"
+embedding = embedder.generate_embedding(text)
 print(f"Embedding shape: {embedding.shape}")
-\end{verbatim}
+```
 
-\textbf{3️⃣ Example Assistant Interaction:}
-\begin{verbatim}
+### 3️⃣ Sample Interaction Flow
+```python
 from src.embeddings import CodeBERTEmbedder
 from src.vectorstore import VectorStore
 from src.retriever import RAGRetriever
-from src.chat_interface import CPAssistant
+from src.assistant import CPAssistant
 
 embedder = CodeBERTEmbedder()
 vector_store = VectorStore()
 retriever = RAGRetriever(embedder, vector_store)
 
-system_message = '''I am solving a competitive programming problem and need help understanding its editorial.
-Answer my questions regarding the editorial. Let me know if I'm misunderstanding anything.
-Do not write or debug code.'''
+system_message = '''I'm working on a Codeforces problem and need help understanding its editorial.
+Please help me clarify any doubts I have. Avoid writing or debugging code.'''
+
 assistant = CPAssistant(retriever, system_message)
-
-response = assistant.chat("How do I solve problem C from Contest #792?")
+response = assistant.chat("How to solve problem C from Contest #792?")
 print(response)
-\end{verbatim}
+```
 
-\subsection*{\faCogs \quad How It Works}
-\textbf{1️⃣ Embedding Generation:}
-\begin{itemize}
-    \item CodeBERT transforms problem statements and editorials into semantic embeddings.
-\end{itemize}
+## ⚙️ How It Works
 
-\textbf{2️⃣ Vector Search with FAISS:}
-\begin{itemize}
-    \item Embeddings are stored in a FAISS vector index with \textbf{HNSW} and \textbf{IVF} for efficient similarity search.
-\end{itemize}
+### 1️⃣ Embedding Generation
+- Uses **CodeBERT** to convert problems and editorials into dense vectors.
 
-\textbf{3️⃣ Query Classification and Filtering:}
-\begin{itemize}
-    \item Automatically detects query type, topic, and filters based on problem metadata (difficulty, tags).
-\end{itemize}
+### 2️⃣ Vector Store with FAISS
+- Stores embeddings in FAISS with **HNSW** and **IVF** indexing for fast and scalable retrieval.
 
-\textbf{4️⃣ Response Generation:}
-\begin{itemize}
-    \item Context-aware output generated using RAG, guided by retrieved knowledge and user queries.
-\end{itemize}
+### 3️⃣ Query Detection & Filtering
+- Analyzes query for type, difficulty, and topic using metadata and keyword analysis.
+- Retrieves and ranks the most relevant contexts using similarity scores.
 
-\subsection*{\faLightbulbO \quad Future Enhancements}
-\begin{itemize}
-    \item \textbf{GPT-powered response refinement}
-    \item \textbf{Fine-tuned models for CP domain}
-    \item \textbf{Web UI for real-time interactions}
-    \item \textbf{Integration with Codeforces API}
-\end{itemize}
-
-\subsection*{\faBalanceScale \quad License}
-Licensed under the \textbf{MIT License}.
-
-\subsection*{\faThumbsOUp \quad Acknowledgments}
-\begin{itemize}
-    \item CodeBERT by Microsoft Research
-    \item FAISS by Facebook AI
-    \item Competitive Programming community
-\end{itemize}
-
+### 4️⃣ User Interaction
+- Returns context-aware suggestions and explanations to enhance understanding of Codeforces problems.
 
